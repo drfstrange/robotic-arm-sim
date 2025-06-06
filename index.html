@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Robotic Arm Simulation</title>
-    <style>
-      body { margin: 0; overflow: hidden; }
-      canvas { display: block; }
-    </style>
-  </head>
-  <body>
-    <script type="module" src="main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotic Arms SVG Demo</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    svg {
+      width: 90vw;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 800 400">
+    <!-- Conveyor belt -->
+    <rect x="100" y="250" width="600" height="40" fill="#444" />
+    <circle cx="120" cy="270" r="8" fill="#999" />
+    <circle cx="200" cy="270" r="8" fill="#999" />
+    <circle cx="280" cy="270" r="8" fill="#999" />
+    <circle cx="360" cy="270" r="8" fill="#999" />
+    <circle cx="440" cy="270" r="8" fill="#999" />
+    <circle cx="520" cy="270" r="8" fill="#999" />
+    <circle cx="600" cy="270" r="8" fill="#999" />
+
+    <!-- Box -->
+    <rect id="box" x="120" y="230" width="60" height="40" fill="#d4933b">
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="440 0" dur="4s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Robotic Arm 1 (Boxing) -->
+    <g id="arm1">
+      <line x1="140" y1="180" x2="140" y2="220" stroke="#222" stroke-width="8" />
+      <line id="arm1-forearm" x1="140" y1="180" x2="120" y2="140" stroke="#666" stroke-width="8">
+        <animateTransform attributeName="transform" type="rotate" from="-20 140 180" to="20 140 180" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <polygon points="112,132 128,132 120,122" fill="#444" />
+    </g>
+
+    <!-- Robotic Arm 2 (Soldering) -->
+    <g id="arm2">
+      <line x1="660" y1="180" x2="660" y2="220" stroke="#222" stroke-width="8" />
+      <line id="arm2-forearm" x1="660" y1="180" x2="680" y2="140" stroke="#666" stroke-width="8">
+        <animateTransform attributeName="transform" type="rotate" from="20 660 180" to="-20 660 180" dur="2s" repeatCount="indefinite"/>
+      </line>
+      <circle cx="680" cy="140" r="4" fill="orange">
+        <animate attributeName="opacity" values="1;0;1" dur="0.5s" repeatCount="indefinite" />
+      </circle>
+    </g>
+  </svg>
+</body>
 </html>
