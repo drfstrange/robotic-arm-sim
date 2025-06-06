@@ -2,8 +2,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.m
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.174.0/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.174.0/examples/jsm/loaders/GLTFLoader.js';
 
-
-
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x222222);
 
