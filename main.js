@@ -1,6 +1,6 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.150.1';
-import { OrbitControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader';
+import * as THREE from './libs/three.module.js';
+import { OrbitControls } from './libs/OrbitControls.js';
+import { GLTFLoader } from './libs/GLTFLoader.js';
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x222222);
@@ -15,12 +15,17 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
+scene.add(new THREE.AmbientLight(0x404040));
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(10, 10, 10);
 scene.add(light);
 
-const ambient = new THREE.AmbientLight(0x404040);
-scene.add(ambient);
+const floor = new THREE.Mesh(
+  new THREE.PlaneGeometry(20, 20),
+  new THREE.MeshStandardMaterial({ color: 0x555555 })
+);
+floor.rotation.x = -Math.PI / 2;
+scene.add(floor);
 
 const loader = new GLTFLoader();
 loader.load('https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpressive.glb', gltf => {
@@ -34,13 +39,6 @@ loader.load('https://threejs.org/examples/models/gltf/RobotExpressive/RobotExpre
 
   animate();
 });
-
-const floor = new THREE.Mesh(
-  new THREE.PlaneGeometry(20, 20),
-  new THREE.MeshStandardMaterial({ color: 0x555555 })
-);
-floor.rotation.x = -Math.PI / 2;
-scene.add(floor);
 
 function animate() {
   requestAnimationFrame(animate);
